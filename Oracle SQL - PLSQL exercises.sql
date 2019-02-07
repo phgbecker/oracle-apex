@@ -478,7 +478,7 @@ CREATE TABLE tb_phgbecker (
     3. Write a script to create a Package and a Package Body with 3 procedures: Insert, Update and Delete(CRUD). All the procedures must return a message and print as DBMS_output
 */
 
-CREATE OR REPLACE PACKAGE package_user_crud AS
+CREATE OR REPLACE PACKAGE package_phgbecker AS
 
     PROCEDURE create_user(
         employee_name     IN VARCHAR2,
@@ -497,12 +497,12 @@ CREATE OR REPLACE PACKAGE package_user_crud AS
 
 END;
 
-CREATE OR REPLACE PACKAGE BODY package_user_crud AS
+CREATE OR REPLACE PACKAGE BODY package_phgbecker AS
 
     PROCEDURE create_user(
         employee_name     IN VARCHAR2,
         employee_birthday IN DATE
-    ) IS
+    ) AS
 
     BEGIN
     
@@ -520,7 +520,7 @@ CREATE OR REPLACE PACKAGE BODY package_user_crud AS
         employee_id       IN NUMBER  ,
         employee_name     IN VARCHAR2,
         employee_birthday IN DATE
-    ) IS
+    ) AS
     
     BEGIN
     
@@ -539,7 +539,7 @@ CREATE OR REPLACE PACKAGE BODY package_user_crud AS
     
     PROCEDURE delete_user(
         employee_id IN NUMBER
-    ) IS 
+    ) AS
     
     BEGIN
     
@@ -560,34 +560,34 @@ END;
 */
 
 BEGIN
-    package_user_crud.create_user('John'   ,  TO_DATE('01/01/2019'));
-    package_user_crud.create_user('Mary'   ,  TO_DATE('01/05/2019'));
-    package_user_crud.create_user('Dan'    ,  TO_DATE('01/10/2019'));
-    package_user_crud.create_user('Max'    ,  TO_DATE('01/15/2019'));
-    package_user_crud.create_user('Scarlet',  TO_DATE('01/20/2019'));
+    package_phgbecker.create_user('John'   ,  TO_DATE('01/01/2019'));
+    package_phgbecker.create_user('Mary'   ,  TO_DATE('01/05/2019'));
+    package_phgbecker.create_user('Dan'    ,  TO_DATE('01/10/2019'));
+    package_phgbecker.create_user('Max'    ,  TO_DATE('01/15/2019'));
+    package_phgbecker.create_user('Scarlet',  TO_DATE('01/20/2019'));
     
-    package_user_crud.update_user(1, 'John A.'   ,  TO_DATE('01/01/2020'));
-    package_user_crud.update_user(2, 'Mary B.'   ,  TO_DATE('02/05/2020'));
-    package_user_crud.update_user(3, 'Dan C.'    ,  TO_DATE('03/10/2020'));
-    package_user_crud.update_user(4, 'Max D.'    ,  TO_DATE('04/15/2020'));
-    package_user_crud.update_user(5, 'Scarlet E.',  TO_DATE('05/20/2020'));
+    package_phgbecker.update_user(1, 'John A.'   ,  TO_DATE('01/01/2020'));
+    package_phgbecker.update_user(2, 'Mary B.'   ,  TO_DATE('02/05/2020'));
+    package_phgbecker.update_user(3, 'Dan C.'    ,  TO_DATE('03/10/2020'));
+    package_phgbecker.update_user(4, 'Max D.'    ,  TO_DATE('04/15/2020'));
+    package_phgbecker.update_user(5, 'Scarlet E.',  TO_DATE('05/20/2020'));
     
-    package_user_crud.delete_user(1);
-    package_user_crud.delete_user(2);
-    package_user_crud.delete_user(3);
-    package_user_crud.delete_user(4);
-    package_user_crud.delete_user(5);
+    package_phgbecker.delete_user(1);
+    package_phgbecker.delete_user(2);
+    package_phgbecker.delete_user(3);
+    package_phgbecker.delete_user(4);
+    package_phgbecker.delete_user(5);
 END;
 
 /*
     EXTRA: Write a Function that prints a USER from DB using the ID (use a Cursor and FOR LOOP) and call the function to show messages on procedure UPDATE;
 */
 
-CREATE OR REPLACE FUNCTION fn_phgbecker_finduser(
-    employee_id IN NUMBER
-)
-RETURN VARCHAR2
-IS
+CREATE OR REPLACE TYPE ty_phgbecker of tb_phgbecker;
+
+CREATE OR REPLACE FUNCTION fn_phgbecker_findusers
+RETURN ty_phgbecker
+AS
 
 DECLARE
     person tb_phgbecker%ROWTYPE;
@@ -595,6 +595,9 @@ DECLARE
 BEGIN
 
     FOR p IN person
+        
+        SELECT * FROM tb_phgbecker;
+        
     LOOP
     
         DBMS_OUTPUT.PUT_LINE('ID: ' || p.user_id || ' - Name: ' || p.user_name || ' - Birthday: ' || TO_CHAR(p.user_birthday, 'DD/MM/YYYY'));
@@ -607,7 +610,7 @@ EXCEPTION
 END;
 
 
-SELECT
-    fn_phgbecker_finduser(1)
+SELECT 
+    *
 FROM
-    DUAL;
+    fn_phgbecker_findusers();
