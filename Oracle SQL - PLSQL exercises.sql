@@ -511,7 +511,7 @@ CREATE OR REPLACE PACKAGE BODY package_user_crud AS
         VALUES
             (seq_phgbecker.NEXTVAL, employee_name, employee_birthday);
 
-        DBMS_OUTPUT.PUT_LINE(employee_name || 'created successfuly');
+        DBMS_OUTPUT.PUT_LINE(employee_name || ' created successfuly');
     
     END;
     
@@ -532,7 +532,7 @@ CREATE OR REPLACE PACKAGE BODY package_user_crud AS
         WHERE
             user_id = employee_id;
             
-        DBMS_OUTPUT.PUT_LINE(employee_name || 'updated successfuly');
+        DBMS_OUTPUT.PUT_LINE(employee_name || ' updated successfuly');
     
     END;
     
@@ -559,23 +559,25 @@ END;
     using the USER_ID;
 */
 
-EXECUTE create_user('John'   , 01-01-2019);
-EXECUTE create_user('Mary'   , 01-05-2019);
-EXECUTE create_user('Dan'    , 01-10-2019);
-EXECUTE create_user('Max'    , 01-15-2019);
-EXECUTE create_user('Scarlet', 01-20-2019);
-
-EXECUTE update_user(1, 'John A.'   , 01-01-2020);
-EXECUTE update_user(2, 'Mary B.'   , 02-05-2020);
-EXECUTE update_user(3, 'Dan C.'    , 03-10-2020);
-EXECUTE update_user(4, 'Max D.'    , 04-15-2020);
-EXECUTE update_user(5, 'Scarlet E.', 05-20-2020);
-
-EXECUTE delete_user(1);
-EXECUTE delete_user(2);
-EXECUTE delete_user(3);
-EXECUTE delete_user(4);
-EXECUTE delete_user(5);
+BEGIN
+    package_user_crud.create_user('John'   ,  TO_DATE('01/01/2019'));
+    package_user_crud.create_user('Mary'   ,  TO_DATE('01/05/2019'));
+    package_user_crud.create_user('Dan'    ,  TO_DATE('01/10/2019'));
+    package_user_crud.create_user('Max'    ,  TO_DATE('01/15/2019'));
+    package_user_crud.create_user('Scarlet',  TO_DATE('01/20/2019'));
+    
+    package_user_crud.update_user(1, 'John A.'   ,  TO_DATE('01/01/2020'));
+    package_user_crud.update_user(2, 'Mary B.'   ,  TO_DATE('02/05/2020'));
+    package_user_crud.update_user(3, 'Dan C.'    ,  TO_DATE('03/10/2020'));
+    package_user_crud.update_user(4, 'Max D.'    ,  TO_DATE('04/15/2020'));
+    package_user_crud.update_user(5, 'Scarlet E.',  TO_DATE('05/20/2020'));
+    
+    package_user_crud.delete_user(1);
+    package_user_crud.delete_user(2);
+    package_user_crud.delete_user(3);
+    package_user_crud.delete_user(4);
+    package_user_crud.delete_user(5);
+END;
 
 /*
     EXTRA: Write a Function that prints a USER from DB using the ID (use a Cursor and FOR LOOP) and call the function to show messages on procedure UPDATE;
