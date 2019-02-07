@@ -563,13 +563,13 @@ EXECUTE create_user('John'   , 01-01-2019);
 EXECUTE create_user('Mary'   , 01-05-2019);
 EXECUTE create_user('Dan'    , 01-10-2019);
 EXECUTE create_user('Max'    , 01-15-2019);
-EXECUTE create_user('Scarlet', 01-50-2019);
+EXECUTE create_user('Scarlet', 01-20-2019);
 
-EXECUTE update_user(1, 'John'   , 01-01-2019);
-EXECUTE update_user(2, 'Mary'   , 01-05-2019);
-EXECUTE update_user(3, 'Dan'    , 01-10-2019);
-EXECUTE update_user(4, 'Max'    , 01-15-2019);
-EXECUTE update_user(5, 'Scarlet', 01-50-2019);
+EXECUTE update_user(1, 'John A.'   , 01-01-2020);
+EXECUTE update_user(2, 'Mary B.'   , 02-05-2020);
+EXECUTE update_user(3, 'Dan C.'    , 03-10-2020);
+EXECUTE update_user(4, 'Max D.'    , 04-15-2020);
+EXECUTE update_user(5, 'Scarlet E.', 05-20-2020);
 
 EXECUTE delete_user(1);
 EXECUTE delete_user(2);
