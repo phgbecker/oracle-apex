@@ -1,5 +1,5 @@
 /*
-	1 - Create a query to display the first name, last name,  hire date, salary, and salary after a raise of 20%. Name the last column (salary after a raise) heading as “ANNUAL_SAL” (OEHR_EMPLOYEES table).
+    1 - Create a query to display the first name, last name,  hire date, salary, and salary after a raise of 20%. Name the last column (salary after a raise) heading as “ANNUAL_SAL” (OEHR_EMPLOYEES table).
 */
 
 SELECT
@@ -18,10 +18,10 @@ SELECT
     last_name    || ', ' || first_name FULL_NAME,
     phone_number || ' - '|| COALESCE(email, 'No Email') CONTACT_DETAILS
 FROM
-	OEHR_EMPLOYEES;
+    OEHR_EMPLOYEES;
 
 /*
-	3 - Display the employee number, first name, job id and department number for all employees whose department number equals 20, 60 or 80 (OEHR_EMPLOYEES table).
+    3 - Display the employee number, first name, job id and department number for all employees whose department number equals 20, 60 or 80 (OEHR_EMPLOYEES table).
 */
 
 SELECT
@@ -35,7 +35,7 @@ WHERE
     department_id IN (20, 60 80);
 
 /*
-	4 - Display the employee number, first name, job id and department number for all employees whose department number is not equal to 20, 60 and 80 (OEHR_EMPLOYEES table).
+    4 - Display the employee number, first name, job id and department number for all employees whose department number is not equal to 20, 60 and 80 (OEHR_EMPLOYEES table).
 */
 
 SELECT
@@ -47,9 +47,9 @@ FROM
     OEHR_EMPLOYEES
 WHERE
     department_id IS NOT IN (20, 60, 80);
-	
+ 
 /*
-	5 - Display the first name and salary for all employees whose first name ends with an e (OEHR_EMPLOYEES table).
+    5 - Display the first name and salary for all employees whose first name ends with an e (OEHR_EMPLOYEES table).
 */
 
 SELECT
@@ -61,7 +61,7 @@ WHERE
     first_name LIKE '%e';
 
 /*
-	6 - Display the last name and department number for all employees where the second letter in their last name is i (OEHR_EMPLOYEES table).
+ 6 - Display the last name and department number for all employees where the second letter in their last name is i (OEHR_EMPLOYEES table).
 */
 
 SELECT
@@ -73,7 +73,7 @@ WHERE
     last_name LIKE '_i%';
 
 /*
-	7 - Display the first name, hire date, salary and department number for all employees whose first name doesn’t have the letter A. Sort the query in ascending order by department number (OEHR_EMPLOYEES table).
+    7 - Display the first name, hire date, salary and department number for all employees whose first name doesn’t have the letter A. Sort the query in ascending order by department number (OEHR_EMPLOYEES table).
 */
 
 SELECT
@@ -87,7 +87,7 @@ WHERE
     UPPER(last_name) NOT LIKE '%A%'
 ORDER BY
     4 ASC;
-	
+ 
 
 /*
     8 - Display the first name concatenated with the last name, separated by comma, and salary, for all employees whose salary not in the range between 7000 and 15000. Sort the query in ascending order by the full name (first_name, last_name) (OEHR_EMPLOYEES table).
@@ -468,7 +468,7 @@ CREATE SEQUENCE  seq_phgbecker
 */
 
 CREATE TABLE tb_phgbecker (
-    user_id       NUMBER (10) NOT NULL,
+    user_id       NUMBER (10)  NOT NULL,
     user_name     VARCHAR2(60) NOT NULL,
     user_birthday DATE,
     CONSTRAINT tb_phgbecker_pk PRIMARY KEY (user_id)
